@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Tiles</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #f7f7f7;
+        margin: 0;
+      }
+      h1 {
+        margin-top: 20px;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(5, 150px);
+        grid-gap: 80px;
+      }
+      .tile {
+        width: 150px;
+        height: 150px;
+        perspective: 1000px;
+        cursor: pointer;
+      }
+      .tile-inner {
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.5s;
+      }
+      .tile:hover .tile-inner {
+        transform: rotateY(180deg);
+      }
+      .tile-front,
+      .tile-back {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        backface-visibility: hidden;
+        border: 2px solid #333;
+        border-radius: 5px;
+        background-color: #4285f4;
+        color: #f7f5f5;
+        font-size: 20px;
+        padding: 10px;
+        font-weight: bold;
+      }
+      .tile-back {
+        transform: rotateY(180deg);
+      }
+
+      .r1 {
+        background-image: url("{{ url_for('static', filename='images/1.webp') }}");
+      }
+      .r2 {
+        background-image: url("{{ url_for('static', filename='images/2.jpg') }}");
+      }
+      .r3 {
+        background-image: url("{{ url_for('static', filename='images/3.avif') }}");
+      }
+      /* Repeat for r4 to r12 */
+      .r4 {
+        background-image: url("{{ url_for('static', filename='images/4.avif') }}");
+      }
+      .r5 {
+        background-image: url("{{ url_for('static', filename='images/5.avif') }}");
+      }
+      .r6 {
+        background-image: url("{{ url_for('static', filename='images/6.avif') }}");
+      }
+      .r7 {
+        background-image: url("{{ url_for('static', filename='images/7.jpg') }}");
+      }
+      .r8 {
+        background-image: url("{{ url_for('static', filename='images/8.avif') }}");
+      }
+      .r9 {
+        background-image: url("{{ url_for('static', filename='images/9.webp') }}");
+      }
+      .r10 {
+        background-image: url("{{ url_for('static', filename='images/10.jpg') }}");
+      }
+      .r11 {
+        background-image: url("{{ url_for('static', filename='images/11.jpg') }}");
+      }
+      .r12 {
+        background-image: url("{{ url_for('static', filename='images/12.jpg') }}");
+      }
+      .r13 {
+        background-image: url("{{ url_for('static', filename='images/13.jpg') }}");
+      }
+      .r14 {
+        background-image: url("{{ url_for('static', filename='images/14.jpg') }}");
+      }
+      .r15 {
+        background-image: url("{{ url_for('static', filename='images/15.avif') }}");
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">{% include 'header.html' %}</div>
+    <h1>Senior Citizen & Maternal Health</h1>
+    <div class="grid-container">
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r1">Stay Active</div>
+          <div class="tile-back r1">
+            Exercise daily for strength, balance, and flexibility.
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r2">Nutrient-Rich Diet</div>
+          <div class="tile-back r2">
+            Eat a balanced diet with vitamins and minerals.
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r3">Regular Check-ups</div>
+          <div class="tile-back r3">
+            Schedule routine health check-ups for preventive care.
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r4">Socialize</div>
+          <div class="tile-back r4">
+            Stay socially connected for mental and emotional well-being.
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r5">Adequate Sleep</div>
+          <div class="tile-back r5">
+            Ensure 7-9 hours of quality sleep each night
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r6">Prenatal Care</div>
+          <div class="tile-back r6">
+            Attend regular prenatal check-ups for a healthy pregnancy.
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r7">Healthy Diet</div>
+          <div class="tile-back r7">
+            Consume nutritious foods rich in vitamins and minerals
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r8">Hydration</div>
+          <div class="tile-back r8">
+            Drink plenty of water for proper hydration during pregnancy.
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r9">Gentle Exercise</div>
+          <div class="tile-back r9">
+            Engage in safe and approved prenatal exercises
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r10">Stress Management</div>
+          <div class="tile-back r10">
+            Practice relaxation techniques for mental well-being.
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r11">Pelvic Floor Exercises</div>
+          <div class="tile-back r11">
+            Do Kegel exercises to strengthen pelvic muscles
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r12">Educate Yourself</div>
+          <div class="tile-back r12">
+            Attend childbirth classes and read about labor and delivery
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r13">Comfortable Footwear</div>
+          <div class="tile-back r13">
+            Wear supportive and comfortable shoes for foot health
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r14">Regular Dental Check-ups</div>
+          <div class="tile-back r14">
+            Maintain oral health with regular dental visits
+          </div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="tile-inner">
+          <div class="tile-front r15">Positive Support System</div>
+          <div class="tile-back r15">
+            Surround yourself with a supportive and positive network
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">{% include 'footer.html' %}</div>
+  </body>
+</html>

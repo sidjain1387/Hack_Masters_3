@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Diet Suggestions</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #3498db;
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        h1, h2 {
+            margin: 0;
+            color: #3498db;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .user-info {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        #diet-suggestions {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+.details {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.details.active {
+    display: block;
+    opacity: 1;
+    max-height: 500px; 
+}
+    </style>
+</head>
+
+<body>
+    <div id="header">{% include 'header.html' %}</div>
+
+    <header>
+        <h1>Health & Diet Suggestions</h1>
+    </header>
+
+    <main>
+        <section class="user-info fade-in-up">
+            <h2>User Information</h2>
+            <label for="age">Age:</label>
+            <input type="number" id="age" placeholder="Enter your age">
+
+            <label for="gender">Gender:</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+            </select>
+
+            <label for="issues">Diseases/Problems:</label>
+            <select id="issues" >
+                <option value="Type-2 Diabetes">Type-2 Diabetes</option>
+                <option value="hypertension">Hypertension</option>
+                <option value="obesity">Obesity</option>
+                <option value="heart disease">Heart Disease</option>
+                <option value="arthritis">Arthritis</option>
+                <option value="osteoporosis">Osteoporosis</option>
+                <option value="chronic kidney Disease">Chronic Kidney Disease</option>
+                <option value="Cancer">Cancer</option>
+                <option value="Chronic Obstructive Pulmonary Disease (COPD)">Chronic Obstructive Pulmonary Disease (COPD)</option>
+                <option value="Alzheimer Disease">Alzheimer's Disease</option>
+                <option value="Flu/Cold">Flu/Cold</option>
+                <option value="Gastroenteritis (Stomach Flu)">Gastroenteritis (Stomach Flu)</option>
+                <option value="Food Poisoning">Food Poisoning</option>
+                <option value="Pneumonia ">Pneumonia </option>
+                <option value="Urinary Tract Infection ">Urinary Tract Infection </option>
+                <option value="Appendicitis">Appendicitis</option>
+                <option value="Dehydration">Dehydration</option>
+                <option value="Inflammatory Bowel Disease">Inflammatory Bowel Disease</option>
+                <option value="Tuberculosis">Tuberculosis</option>
+                <option value="Migraine">Migraine</option>
+            </select>
+
+            <button onclick="updateDiet()">Get Diet Suggestions</button>
+        </section>
+
+        <section id="diet-suggestions" class="fade-in-up">
+        </section>
+    </main>
+
+    <script>
+        function updateDiet() {
+            var age = document.getElementById('age').value;
+            var gender = document.getElementById('gender').value;
+            var selectedIssues = getSelectedOptions('issues');
+
+            var dietSuggestions = generateDietSuggestions(age, gender, selectedIssues);
+
+            var dietSection = document.getElementById('diet-suggestions');
+            dietSection.innerHTML = '<h2>Diet Suggestions</h2>' + dietSuggestions;
+        }
+
+        function generateDietSuggestions(age, gender, selectedIssues) {
+            
+
+            var suggestions = '<ul>';
+            selectedIssues.forEach(function (issue) {
+                suggestions += '<li>Diet suggestions for ' + issue + ':';
+
+                if (issue === 'heart disease') {
+                    suggestions += ' Dietary Focus: Omega-3 fatty acids, fiber, potassium.  Nutritional Values: Monitor saturated fats; aim for 2,000 mg potassium daily.  Common Dishes: Grilled salmon, quinoa salad, fresh fruit.';
+                } else if (issue === 'hypertension') {
+                    suggestions += ' Dietary Focus: Potassium, magnesium, calcium; limit sodium (2,300 mg/day).  Nutritional Values: Aim for 1,500-2,300 mg sodium daily; prioritize potassium-rich foods.  Common Dishes: Baked chicken, sweet potatoes, spinach salad.  ';
+                } else if (issue === 'obesity') {
+                    suggestions += 'Dietary Focus: Balanced diet, portion control, monitor calories.  Nutritional Values: Individualized calorie needs; focus on nutrient-dense foods.  Common Dishes: Grilled vegetables, quinoa, turkey wraps.';
+                } else if (issue === 'Type-2 Diabetes'){
+                    suggestions += 'Dietary Focus: Monitor carbs, balanced diet with fiber. Nutritional Values: Individualized carbohydrate requirements. Common Dishes: Chicken stir-fry, brown rice, mixed berries.';
+                } else if (issue === 'arthritis'){
+                    suggestions += 'Dietary Focus: Omega-3s, antioxidants (vitamin C, E), maintain a healthy weight.  Nutritional Values: Adequate omega-3s, vitamins C and E; personalized calorie requirements. Common Dishes: Salmon and avocado salad, berry smoothie.';
+                } else if (issue === 'osteoporosis'){
+                    suggestions += 'Dietary Focus: Calcium (1,000-1,200 mg/day), vitamin D (600-800 IU/day).  Nutritional Values: Prioritize calcium and vitamin D intake; consider supplements if necessary.  Common Dishes: Greek yogurt with almonds, leafy green salad.';
+                } else if (issue === 'chronic kidney Disease'){
+                    suggestions += 'Dietary Focus: Monitor protein, control phosphorus, limit sodium, potassium.  Nutritional Values: Individualized protein, phosphorus, sodium, and potassium requirements.  Common Dishes: White fish, steamed vegetables, apple slices.';
+                } else if (issue === 'Alzheimer Disease'){
+                    suggestions += 'Dietary Focus: Omega-3s, antioxidants (vitamin E, C), heart-healthy foods.  Nutritional Values: Prioritize omega-3s, vitamins E and C, maintain heart health.  Common Dishes: Blueberry and walnut oatmeal, baked sweet potato fries.';
+                } else if (issue === 'Flu/Cold'){
+                    suggestions += 'Dietary Focus: Vitamin C-rich foods, hydration, zinc.  Nutritional Values: Prioritize hydration; consume vitamin C-rich foods.  Common Dishes: Chicken noodle soup, orange and spinach salad.';
+                } else if (issue === 'Gastroenteritis (Stomach Flu)'){
+                    suggestions += 'Dietary Focus: Easily digestible foods, electrolyte-rich beverages.  Nutritional Values: Maintain hydration with electrolytes.  Common Dishes: Plain rice, banana, electrolyte-rich sports drink.';
+                } else if (issue === 'Food Poisoning'){
+                    suggestions += 'Dietary Focus: Hydration, reintroduce bland, easy-to-digest foods.  Nutritional Values: Prioritize hydration and easily digestible foods.  Common Dishes: Plain crackers, boiled potatoes, clear broth.';
+                } else if (issue === 'Pneumonia '){
+                    suggestions += 'Dietary Focus: Balanced diet with protein, vitamins A, C, and zinc.  Nutritional Values: Emphasize protein, vitamins A and C, and zinc.  Common Dishes: Chicken and vegetable soup, fortified orange juice.';
+                } else if (issue === 'Urinary Tract Infection'){
+                    suggestions += 'Dietary Focus: Hydration, cranberry juice, vitamin C-rich foods.  Nutritional Values: Prioritize hydration; consume vitamin C-rich foods.  Common Dishes: Cranberry juice, yogurt with berries.';
+                } else if (issue === 'Appendicitis'){
+                    suggestions += 'Dietary Focus: Post-surgery dietary recommendations; gradual reintroduction of solid foods.  Nutritional Values: Follow post-surgery guidelines; prioritize nutrient-rich foods.  Common Dishes: Clear broths, boiled vegetables, plain rice.';
+                } else if (issue === 'Inflammatory Bowel Disease'){
+                    suggestions += 'Dietary Focus: Follow low-residue or specific carbohydrate diet as recommended.  Nutritional Values: Individualized dietary plan based on specific needs.  Common Dishes: Smoothies, well-cooked vegetables, lean protein.';
+                } else if (issue === 'Tuberculosis'){
+                    suggestions += 'Dietary Focus: Nutrient-dense diet with protein, vitamins A, C, D, zinc.  Nutritional Values: Emphasize protein, vitamins A, C, D, and zinc.  Common Dishes: Lentil soup, fortified cereals,spinach salad.';
+                } else if (issue === 'Migraine'){
+                    suggestions += 'Dietary Focus: Identify trigger foods, maintain hydration, balanced diet.  Nutritional Values: Stay hydrated; monitor intake of trigger foods.  Common Dishes: Grilled chicken salad, quinoa bowl with vegetables.';
+                } else if (issue === 'Cancer'){
+                    suggestions += 'Dietary Focus: Antioxidants, fiber, diverse fruits, and vegetables.  Nutritional Values: Prioritize a variety of colorful fruits and vegetables; maintain a balanced diet.  Common Dishes: Broccoli and chicken stir-fry, mixed berry smoothie.';
+                } else if (issue === 'Chronic Obstructive Pulmonary Disease (COPD)'){
+                    suggestions += 'Dietary Focus: High protein, healthy fats, antioxidant-rich foods.  Nutritional Values: Emphasize protein intake, antioxidant-rich foods.  Common Dishes: Grilled salmon with quinoa, avocado and spinach salad.';
+                } else if (issue === 'Dehydration'){
+                    suggestions += 'Dietary Focus: Increase fluid intake based on symptoms.  Nutritional Values: Prioritize fluid intake; consider oral rehydration solutions.  Common Dishes: Clear soups, water-rich fruits like watermelon.';
+                } 
+                
+                suggestions += '</li>';
+            });
+            suggestions += '</ul>';
+
+            return '<p>Your diet suggestions based on age ' + age + ', gender ' + gender + ':</p>' + suggestions;
+        }
+
+        function getSelectedOptions(id) {
+            var select = document.getElementById(id);
+            var selectedOptions = [];
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].selected) {
+                    selectedOptions.push(select.options[i].value);
+                }
+            }
+            return selectedOptions;
+        }
+    </script>
+</body>
+
+</html>

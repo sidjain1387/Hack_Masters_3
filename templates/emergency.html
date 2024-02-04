@@ -1,0 +1,184 @@
+<!--
+The HTML file for the Ambulance Animation Assignment.
+Created by Jalaluddin Qureshi for the Digitial Design course (HTTP5104).
+Humber College, Toronto, Canada (Fall 2020).
+-->
+
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ambulance On Call Animation</title>
+    <meta name="description" content="Content" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='ambulance.css') }}"
+    />
+  </head>
+
+  <body>
+    <div id="header">{% include 'header.html' %}</div>
+    <div class="page-wrapper">
+      <!-- All the animation objects will be inside this container -->
+      <main>
+        <div class="animation-page">
+          <div class="sky">
+            <h2 class="hidden">Sky with hospital, tree, and clouds.</h2>
+
+            <div class="hospital"></div>
+            <div class="tree1"></div>
+            <div class="tree2"></div>
+            <div class="sun"></div>
+
+            <div class="building">
+              <div class="building-windows"></div>
+            </div>
+            <!--Cloud should be at the bottom of sky container -->
+            <div class="cloud1"><h2 class="hidden">Moving Clouds</h2></div>
+            <div class="cloud2"><h2 class="hidden">Moving Clouds</h2></div>
+          </div>
+
+          <!-- Road object -->
+          <div class="road-object">
+            <h2 class="hidden">Road</h2>
+            <div class="road-lines"></div>
+          </div>
+
+          <!-- Ambulance object -->
+          <div id="ambulance-object">
+            <h2 class="hidden">Moving Ambulance with Siren.</h2>
+
+            <div class="backside">
+              <!--Cross sign -->
+              <div class="cross-horizontal"></div>
+              <div class="cross-vertical"></div>
+
+              <!--Horizontal orange strip -->
+              <div class="strip-horizontal"></div>
+
+              <!--Siren Light-->
+              <div id="light-back"></div>
+              <div id="light-front"></div>
+            </div>
+
+            <div id="siren"></div>
+
+            <div class="frontside">
+              <div class="frontup">
+                <div class="window"></div>
+              </div>
+
+              <div class="frontbottom">
+                <div class="door">
+                  <div class="door-handle"></div>
+                </div>
+              </div>
+            </div>
+
+            <!--Wheels conainer-->
+            <div>
+              <div class="wheel wheelLeft">
+                <div class="wheel-vertical"></div>
+                <div class="wheel-horizontal"></div>
+              </div>
+
+              <div class="wheel wheelRight">
+                <div class="wheel-vertical"></div>
+                <div class="wheel-horizontal"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <section>
+      <h2>Emergency Numbers</h2>
+      <p><strong>Ambulance:</strong> 102/108</p>
+      <p><strong>Fire Department:</strong> 101</p>
+      <p><strong>Police:</strong> 100</p>
+      <p><strong>Child-Helpine:</strong> 1098</p>
+      <p><strong>Women-Helpine:</strong> 1090</p>
+      <p>
+        <strong>Medical & Non-Emergency:</strong> 112
+      </p>
+      
+     
+      <!-- Add more emergency contact numbers as needed -->
+    </section>
+
+    <script>
+      window.onload = function () {
+        // ***************************************** //
+        //Fetches the elements which will be animated. //
+        var siren = document.getElementById("siren");
+        var lightFront = document.getElementById("light-front");
+        var lightBack = document.getElementById("light-back");
+        var ambulance = document.getElementById("ambulance-object");
+        var wheel = document.getElementsByClassName("wheel");
+
+        // ***************************************** //
+        //Fetches the audio element //
+        var audio = document.getElementById("audio");
+
+        // ***************************************** //
+        // Fetches the various button elements  //
+        var sirenOn = document.getElementById("siren-on");
+        var sirenOff = document.getElementById("siren-off");
+        //
+        var stop = document.getElementById("stop");
+        var move = document.getElementById("move");
+        //
+        var speedDefault = document.getElementById("speed-default");
+        var speedFast = document.getElementById("speed-fast");
+
+        // ***************************************** //
+        // Listeners //
+        sirenOn.onclick = animateSiren;
+        sirenOff.onclick = turnOffSiren;
+
+        stop.onclick = function () {
+          ambulance.style.animationPlayState = "paused";
+          wheel[0].style.animationPlayState = "paused";
+          wheel[1].style.animationPlayState = "paused";
+        };
+        move.onclick = function () {
+          ambulance.style.animationPlayState = "running";
+          wheel[0].style.animationPlayState = "running";
+          wheel[1].style.animationPlayState = "running";
+        };
+
+        speedDefault.onclick = function () {
+          ambulance.style.animationDuration = "12s";
+          wheel[0].style.animationDuration = "4s";
+          wheel[1].style.animationDuration = "4s";
+        };
+        speedFast.onclick = function () {
+          ambulance.style.animationDuration = "5s";
+          wheel[0].style.animationDuration = "2s";
+          wheel[1].style.animationDuration = "2s";
+        };
+
+        // ***************************************** //
+        // FUNCTIONS //
+        // ***************************************** //
+        //turns on the siren and audio.
+        function animateSiren() {
+          siren.style.animationName = "animateSiren";
+          lightFront.style.animationName = "light-on";
+          lightBack.style.animationName = "light-on";
+          audio.play();
+          audio.loop = true;
+        }
+
+        //turns off the siren and audio.
+        function turnOffSiren() {
+          siren.style.animationName = "doesnothing";
+          lightFront.style.animationName = "doesnothing";
+          lightBack.style.animationName = "doesnothing";
+          audio.pause();
+        }
+      };
+    </script>
+  </body>
+</html>

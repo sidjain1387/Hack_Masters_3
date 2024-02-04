@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Blog entry layouts</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <style>
+    body {
+      background: #e5ded8;
+      box-sizing: border-box;
+    }
+
+    .blog-container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;
+      font-family: "adelle-sans", sans-serif;
+      font-weight: 100;
+      margin: 48px auto;
+      width: 20rem;
+      transition: transform 0.5s ease; /* Add transition for smooth animation */
+    }
+
+    @media screen and (min-width: 480px) {
+      .blog-container {
+        width: 28rem;
+      }
+    }
+
+    @media screen and (min-width: 767px) {
+      .blog-container {
+        width: 40rem;
+      }
+    }
+
+    @media screen and (min-width: 959px) {
+      .blog-container {
+        width: 50rem;
+      }
+    }
+
+    .blog-container a {
+      color: #4d4dff;
+      text-decoration: none;
+      transition: .25s ease;
+    }
+
+    .blog-container a:hover {
+      border-color: #ff4d4d;
+      color: #ff4d4d;
+    }
+
+    .blog-cover {
+        background: url("{{ url_for('static', filename='images/bruise.jpg') }}");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 10px 10px 0 0;
+      height: 15rem;
+      box-shadow: inset rgba(0, 0, 0, 0.2) 0 64px 64px 16px;
+    }
+
+    .blog-author,
+    .blog-author--no-cover {
+      margin: 0 auto;
+      padding-top: .125rem;
+      width: 80%;
+    }
+
+    .blog-author h3::before,
+    .blog-author--no-cover h3::before {
+      background-size: cover;
+      border-radius: 50%;
+      content: " ";
+      display: inline-block;
+      height: 32px;
+      margin-right: .5rem;
+      position: relative;
+      top: 8px;
+      width: 32px;
+    }
+
+    .blog-author h3 {
+      color: #fff;
+      font-weight: 100;
+    }
+
+    .blog-author--no-cover h3 {
+      color: #999999;
+      font-weight: 100;
+    }
+
+    .blog-body {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .video-body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .blog-title h1 a {
+      color: #333;
+      font-weight: 100;
+    }
+
+    .blog-summary p {
+      color: #4d4d4d;
+    }
+
+    .blog-tags ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .blog-tags li + li {
+      margin-left: .5rem;
+    }
+
+    .blog-tags a {
+      border: 1px solid #999999;
+      border-radius: 3px;
+      color: #999999;
+      font-size: .75rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      letter-spacing: 1px;
+      padding: 0 .5rem;
+      text-align: center;
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 5rem;
+    }
+
+    .blog-footer {
+      border-top: 1px solid #e6e6e6;
+      margin: 0 auto;
+      padding-bottom: .125rem;
+      width: 80%;
+    }
+
+    .blog-footer ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding-left: 0;
+    }
+
+    .blog-footer li:first-child {
+      margin-right: auto;
+    }
+
+    .blog-footer li + li {
+      margin-left: .5rem;
+    }
+
+    .blog-footer li {
+      color: #999999;
+      font-size: .75rem;
+      height: 1.5rem;
+      letter-spacing: 1px;
+      line-height: 1.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .blog-footer li a {
+      color: #999999;
+    }
+
+    .comments {
+      margin-right: 1rem;
+    }
+
+    .published-date {
+      border: 1px solid #999999;
+      border-radius: 3px;
+      padding: 0 .5rem;
+    }
+
+    .numero {
+      position: relative;
+      top: -0.5rem;
+    }
+
+    .icon-star,
+    .icon-bubble {
+      fill: #999999;
+      height: 24px;
+      margin-right: .5rem;
+      transition: .25s ease;
+      width: 24px;
+    }
+
+    .icon-star:hover,
+    .icon-bubble:hover {
+      fill: #ff4d4d;
+    }
+
+    /* Add the zoom effect on hover */
+    .blog-container:hover {
+      transform: scale(1.05); /* Zoom in by 5% when hovered */
+    }
+
+    /* Add the left to center transition */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%); /* Start from left */
+      }
+      to {
+        transform: translateX(0); /* Move to center */
+      }
+    }
+  </style>
+</head>
+<body>
+    <div id="header">{% include 'header.html' %}</div>
+
+  <!-- Blog container 1 -->
+  <div class="blog-container">
+    <!-- Blog header -->
+    <div class="blog-header">
+      <!-- Blog cover -->
+      <div class="blog-cover">
+        <!-- Blog author -->
+        <div class="blog-author"></div>
+      </div>
+    </div>
+
+    <!-- Intro block -->
+    <div class="blog-body">
+      <!-- Blog title -->
+      <div class="blog-title">
+        <h1><a href="#"><b>BRUISE TREATMENT</b></a></h1>
+      </div>
+      <!-- Blog summary -->
+      <div class="blog-summary">
+        <p>Stay calm, we'll take care of everything. You're stronger than you think, and you'll overcome this!!!</p>
+      </div>
+      <!-- Blog tags -->
+      <div class="blog-tags">
+        <ul><!-- Removed CSS, web design, and codepen buttons --></ul>
+      </div>
+    </div>
+
+    <!-- Blog footer -->
+    <div class="blog-footer">
+      <ul><!-- Removed "2 days ago" and comment and favorite buttons --></ul>
+    </div>
+  </div>
+
+  <!-- Blog container 2 -->
+  <div class="blog-container">
+    <!-- Blog header -->
+    <div class="blog-header">
+      <!-- Blog author (no cover) -->
+      <div class="blog-author--no-cover"></div>
+    </div>
+
+    <!-- First aid block -->
+    <div class="blog-body">
+      <!-- Blog title -->
+      <div class="blog-title">
+        <h1><a href="#"><b>FIRST AID MEASURES</b></a></h1>
+      </div>
+      <div class="blog-summary">
+        <p>1. Ice Pack: Apply an ice pack wrapped in a cloth to the bruised area for 15-20 minutes. This helps reduce swelling and pain.
+         <p>2. Elevation: Elevate the bruised area above the level of the heart, if possible. This can also help reduce swelling.</p>
+         <p>3. Compression: Use a compression bandage or elastic wrap to apply gentle pressure to the bruised area. This can help reduce swelling and provide support.</p>
+         <p>4. Rest: Avoid putting weight or pressure on the bruised area. Resting the affected limb or body part can aid in healing.</p>
+         <p>5. Pain Relief: Over-the-counter pain relievers such as ibuprofen (Advil, Motrin) or acetaminophen (Tylenol) can help alleviate pain associated with the bruise.</p>
+         <p>6. Arnica Gel or Cream: Applying arnica gel or cream to the bruised area may help reduce pain, inflammation, and discoloration.</p>
+         <p>7. Heat Therapy: After the first 48 hours, applying a warm compress or taking a warm bath may help increase blood circulation and promote healing.</p>
+         <p>8. Gentle Massage: Once the bruise has started to heal, gently massaging the area can help break up blood clots and improve circulation.</p>
+         <p>9. Protective Padding: If the bruised area is prone to further injury, such as on the elbows or knees, consider using protective padding or bandages.</p>
+         <p>10. Seek Medical Attention: If the bruise is severe, accompanied by intense pain, or does not improve within a few days, it's advisable to seek medical attention. Additionally, if there are signs of infection (e.g., increasing pain, redness, warmth, or pus), medical attention should be sought promptly.</p>
+         
+      </div>
+      <!-- Blog summary -->
+      <div class="blog-summary">
+        <!-- First aid content -->
+      </div>
+      <!-- Blog tags -->
+      <div class="blog-tags">
+      </div>
+    </div>
+
+    <!-- Blog footer -->
+    <div class="blog-footer">
+    </div>
+  </div>
+
+  <!-- Blog container 3 -->
+  <div class="blog-container">
+    <!-- Blog header -->
+    <div class="blog-header">
+      <!-- Blog author (no cover) -->
+      <div class="blog-author--no-cover"></div>
+    </div>
+
+    <!-- Video block -->
+    <div class="blog-body">
+      <!-- Blog title -->
+      <div class="blog-title">
+        <h1><a href="#"><b>A Video Based for Better Understanding</b></a></h1>
+      </div>
+      <!-- Blog summary -->
+      <div class="blog-summary">
+        <p>Credits - First Aid for Life on YouTube</p>
+      </div>
+      <!-- Video element -->
+      <iframe class="video-body" width="560" height="615" src="https://www.youtube.com/embed/DkOmr3BEkvE?si=WBqTebSmads5Q7kS" frameborder="0" allowfullscreen></iframe>
+      <!-- Blog tags -->
+      <div class="blog-tags">
+        <ul><!-- Removed video, embed, and what buttons --></ul>
+      </div>
+    </div>
+
+    <!-- Blog footer -->
+    <div class="blog-footer">
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            width: 70%;
+            margin: auto;
+            height: 300px;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container img,
+        .container .text {
+            transition: transform 0.5s ease;
+        }
+
+        .container img {
+            max-width: 40%;
+            height: auto;
+            transform: translateX(-50px);
+            border-radius: 8px;
+        }
+
+        .container .text {
+            max-width: 45%;
+            transform: translateX(50px);
+            text-align: right;
+        }
+
+        .container.reverse .text {
+            text-align: left;
+        }
+
+        .container.reverse img {
+            transform: translateX(50px);
+        }
+
+        .container.show {
+            opacity: 1;
+        }
+
+        .container.show img,
+        .container.show .text {
+            transform: translateX(0);
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #2e8b57;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #85d4a7;
+        }
+
+        h1 {
+            text-align: center;
+            animation: spin 4s 2s cubic-bezier(0.4, 0, 0.2, 1) forwards, 
+                       enlarge 6s 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            font-size: 40px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(720deg);
+            }
+        }
+
+        @keyframes enlarge {
+            0% {
+                font-size: 36px;
+            }
+            100% {
+                font-size: 48px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Features</h1>
+        
+        <!-- Container 1: MRI Scan using ML -->
+        <div class="container" id="container1">
+            <img src="{{ url_for('static', filename='images/mri-scan.jpg') }}" alt="MRI Scan">
+            <div class="text">
+                <p>
+                    Our machine learning model utilizes advanced features to analyze MRI scans, accurately detecting subtle indicators of brain tumors. By training on extensive datasets, it distinguishes between benign and malignant tumors with high precision. Providing insights into aids in personalized treatment planning. Our solution enables early detection and precise diagnosis, enhancing patient care and outcomes.
+                </p>
+                <a href="/index1.html" class="button">Explore More</a>
+
+            </div>
+        </div>
+
+        <!-- Container 2: Blood Test Indicator Evaluation -->
+        <div class="container reverse" id="container2">
+            <div class="text">
+                <p>
+                    Our blood test indicator system tracks changes in indicator levels to offer customized precautionary and preventative measures. By analyzing these fluctuations, it provides tailored advice based on increasing or decreasing values. This proactive approach enables individuals to take timely actions to maintain their health and prevent potential complications.s
+                </p>
+                <a href="/indicators.html" class="button">Explore More</a>
+            </div>
+            <img src="{{ url_for('static', filename='images/blood-test.jpg') }}" alt="Blood Test">
+        </div>
+    </div>
+
+    <script>
+        // Add animation class to each container to make them appear one by one
+        document.addEventListener("DOMContentLoaded", function() {
+            var containers = document.querySelectorAll(".container");
+            containers.forEach(function(container, index) {
+                setTimeout(function() {
+                    container.classList.add("show");
+                }, index * 500);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        body {
+            background-color: #e0eabc;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Additional Styles for Emergency Button */
+        #emergency-button-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        .emergency-button {
+            background-color: blue;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            transition: background-color 0.3s, margin-left 0.3s;
+            display: inline-block;
+        }
+
+        .emergency-button:hover {
+            background-color: darkred;
+            margin-left: 10px; /* Adjust the margin as needed */
+        }
+
+        #contactNumber {
+            display: none;
+            margin-left: 10px;
+            background-color: red;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        {% include 'header.html' %}
+    </div>
+
+    <!-- Emergency Button Section -->
+
+    <form action="abc.html" onsubmit="return data()">
+        <h1>Feedback Form</h1>
+        Name: <input type="text" name="username" id="h1"><br>
+        Contact Number: <input type="text" name="contact" id="h2"><br>
+        Email:<input type="email" name="email" id="h3"><br>
+        Feedback: <input type="text" name="Feedback" id="h4"><br>
+        
+        <input type="submit" value="Submit Your Data">
+    </form>
+
+    <script>
+        function data() {
+            var a = document.getElementById("h1").value;
+            var b = document.getElementById("h2").value;
+            var c = document.getElementById("h3").value;
+            var d = document.getElementById("h4").value;
+
+            if (a.trim() === "" || b.trim() === "" || c.trim() === "" || d.trim() === "") {
+                alert("All fields are mandatory");
+                return false;
+            } else if (b.length !== 10) {
+                alert("Number should be of 10 digits!!");
+                return false;
+            } else if (isNaN(b)) {
+                alert("Only Numbers are allowed!!");
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+
+    <div id="footer">
+        {% include 'footer.html' %}
+    </div>
+</body>
+</html>

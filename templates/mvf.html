@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthcare Myths vs Facts</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        display: flex;
+        flex-direction: column; /* Adjusted flex direction */
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      header {
+        background-color: #333;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        width: 100%; /* Added width property */
+      }
+
+      .myth-fact-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .myth-fact-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin: 10px;
+        padding: 10px;
+        background-color: #d70909;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+        animation: appearAnimation 1s ease-in-out;
+        width: 280px;
+      }
+
+      .fact-card {
+        display: none;
+        animation: appearAnimation 1s ease-in-out;
+        background-color: #0f0;
+        padding: 10px;
+      }
+
+      .myth-fact-card:hover .fact-card {
+        display: block;
+        animation: revealFact 2s ease-in-out;
+      }
+
+      @keyframes appearAnimation {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes revealFact {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .myth-fact-card h2 {
+        margin-top: 0;
+        color: #fff;
+      }
+
+      .fact-card h2 {
+        color: #333;
+      }
+
+      .myth-fact-card p {
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">{% include 'header.html' %}</div>
+
+    <header>
+      <h1>Healthcare Myths vs Facts</h1>
+    </header>
+
+    <div class="myth-fact-container">
+      <div class="myth-fact-card">
+        <h2>Myth: Rubbing alcohol speeds wound healing.</h2>
+        <div class="fact-card">
+          <h2>Fact: Use mild soap and water for faster, safer wound care.</h2>
+        </div>
+      </div>
+      <div class="myth-fact-card">
+        <h2>Myth: Butter helps with burns.</h2>
+        <div class="fact-card">
+          <h2>
+            Fact: Cool water and sterile dressing are better for burn care.
+          </h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Tilting head back stops nosebleed.</h2>
+        <div class="fact-card">
+          <h2>Fact: Lean forward, pinch nose to prevent throat blood flow.</h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Urine soothes jellyfish stings</h2>
+        <div class="fact-card">
+          <h2>
+            Fact: Rinse with vinegar or seawater; urine can worsen stings.
+          </h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Heat aids sprain healing</h2>
+        <div class="fact-card">
+          <h2>Fact: Ice first 48 hours to reduce swelling, then use heat.</h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Suck out snake venom.</h2>
+        <div class="fact-card">
+          <h2>
+            Fact: Immobilize, seek medical help; sucking can cause infection.
+          </h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Coffee or alcohol speeds sobriety..</h2>
+        <div class="fact-card">
+          <h2>Fact: Time is the only way to sober up.</h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Spoon prevents swallowing tongue during seizure.</h2>
+        <div class="fact-card">
+          <h2>Fact: Never put anything in mouth; place person on side.</h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Holding breath cures hiccups.</h2>
+        <div class="fact-card">
+          <h2>Fact: Try drinking water or breathing into a paper bag.</h2>
+        </div>
+      </div>
+
+      <div class="myth-fact-card">
+        <h2>Myth: Ice directly on sprained ankle reduces swelling.</h2>
+        <div class="fact-card">
+          <h2>Fact: Ice directly on sprained ankle reduces swelling.</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

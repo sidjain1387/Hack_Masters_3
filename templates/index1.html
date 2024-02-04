@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MRI Brain Tumor Scanning</title> <!-- Changed title -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        #upload-form {
+            margin-top: 20px;
+        }
+        #image-input {
+            margin-right: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007bff;
+        }
+        .hello{
+            height: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        {% include 'header.html' %}
+    </div>
+    <br>
+    
+    <!-- <div class="hello"></div> -->
+    <h1>MRI Brain Tumor Scanning</h1> <!-- Changed heading -->
+    <form id="upload-form" enctype="multipart/form-data">
+        <input type="file" id="image-input" accept="image/*" required>
+        <button type="submit">Predict</button>
+    </form>
+    <div id="result"></div>
+
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var formData = new FormData();
+            formData.append('file', document.getElementById('image-input').files[0]);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = 'Predicted class: ' + data;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+    <div id="footer">
+        {% include 'footer.html' %}
+    </div>
+    
+</body>
+</html>

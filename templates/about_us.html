@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_1.css') }}">
+    <title>About Us</title>
+</head>
+<body>
+    <div id="header">{% include 'header.html' %}</div>
+    
+    <div class="container">
+        <div class="card__1 card-color__1">
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/chirag_sharma.jpg') }}" alt="">
+            </div>
+            <div class="content">
+                <h1>Chirag Sharma</h1>
+                <h2>Frontend</h2>
+                <div class="social">
+                    <i class="fa-brands fa-instagram fa-2x"></i>
+                    <i class="fa-brands fa-twitter fa-2x"></i>
+                    <i class="fa-brands fa-github fa-2x"></i>
+                    <i class="fa-brands fa-facebook fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card__1 card-color__2">
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/Siddhant_Jain.jpg') }}" alt="">
+            </div>
+            <div class="content">
+                <h1>Siddhant Jain</h1>
+                <h2>Backend</h2>
+                <div class="social">
+                    <i class="fa-brands fa-instagram fa-2x"></i>
+                    <i class="fa-brands fa-twitter fa-2x"></i>
+                    <i class="fa-brands fa-github fa-2x"></i>
+                    <i class="fa-brands fa-facebook fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card__1 card-color__1">
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/Divyanshu_pandey.jpg') }}" alt="">
+            </div>
+            <div class="content">
+                <h1>Divyanshu Pandey</h1>
+                <h2>Frontend</h2>
+                <a href="#" class="btn">View More</a>
+                <div class="social">
+                    <i class="fa-brands fa-instagram fa-2x"></i>
+                    <i class="fa-brands fa-twitter fa-2x"></i>
+                    <i class="fa-brands fa-github fa-2x"></i>
+                    <i class="fa-brands fa-facebook fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        <div class="card__1 card-color__2">
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/chiraj_jain.jpeg') }}" alt="">
+            </div>
+            <div class="content">
+                <h1>Chirag Jain</h1>
+                <h2>Frontend</h2>
+                <a href="#" class="btn">View More</a>
+                <div class="social">
+                    <i class="fa-brands fa-instagram fa-2x"></i>
+                    <i class="fa-brands fa-twitter fa-2x"></i>
+                    <i class="fa-brands fa-github fa-2x"></i>
+                    <i class="fa-brands fa-facebook fa-2x"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        {% include 'footer.html' %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Precautions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        h1 {
+            margin-top: 50px;
+            color: #000409;
+        }
+        .paq-container {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .paq-question {
+            background-color: #4285f4;
+            color: #0d0101;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            border-radius: 5px;
+            position: relative;
+        }
+        .paq-question::after {
+            content: '▼'; 
+            font-size: 12px;
+            color: #0e0101;
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+        .paq-answer {
+            display: none;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #e0e0e0;
+            color: #333;
+            border-radius: 5px;
+        }
+        body {
+            text-align: center;
+        }
+        h1 {
+            margin-top: 50px; 
+        }
+    </style>
+</head>
+<body>
+    <div id="header">{% include 'header.html' %}</div>
+    <h1>Mental Health Precautions</h1>
+    <div class="paq-container">
+    <div class="paq-question" onclick="toggleAnswer(1)">Anxiety</div>
+    <div class="paq-answer" id="answer1">Practice deep breathing, seek support.</div>
+    <div class="paq-question" onclick="toggleAnswer(2)">Depression</div>
+    <div class="paq-answer" id="answer2">Talk therapy, connect with loved ones.</div>
+    <div class="paq-question" onclick="toggleAnswer(3)">Insomnia</div>
+    <div class="paq-answer" id="answer3">Maintain sleep routine, limit screen time.</div>
+    <div class="paq-question" onclick="toggleAnswer(4)">Fatigue</div>
+    <div class="paq-answer" id="answer4">Prioritize rest, balanced diet.</div>
+    <div class="paq-question" onclick="toggleAnswer(5)">Irritability</div>
+    <div class="paq-answer" id="answer5">Practice mindfulness, identify triggers.</div>
+    <div class="paq-question" onclick="toggleAnswer(6)">Mood swings</div>
+    <div class="paq-answer" id="answer6">Mindful self-awareness, seek professional help.</div>
+    <div class="paq-question" onclick="toggleAnswer(7)">Social withdrawal</div>
+    <div class="paq-answer" id="answer7">Engage in social activities, build connections</div>
+    <div class="paq-question" onclick="toggleAnswer(8)">Lack of concentration</div>
+    <div class="paq-answer" id="answer8"> Break tasks, prioritize, stay organized.</div>
+    <div class="paq-question" onclick="toggleAnswer(9)">Memory Issues</div>
+    <div class="paq-answer" id="answer9">Mental exercises, healthy diet, quality sleep.</div>
+    <div class="paq-question" onclick="toggleAnswer(10)">Hopelessness</div>
+    <div class="paq-answer" id="answer10">Seek therapy, cultivate positive thoughts.</div>
+    <div class="paq-question" onclick="toggleAnswer(11)">Suicidal thoughts</div>
+    <div class="paq-answer" id="answer11">Urgent professional help, confide in someone.</div>
+    <div class="paq-question" onclick="toggleAnswer(12)">Appetite Changes</div>
+    <div class="paq-answer" id="answer12"> Balanced meals, seek nutritional advice.</div>
+    <div class="paq-question" onclick="toggleAnswer(13)">Panic Attacks</div>
+    <div class="paq-answer" id="answer13">Deep breathing, grounding techniques.</div>
+    <div class="paq-question" onclick="toggleAnswer(14)">Obsessive Thoughts</div>
+    <div class="paq-answer" id="answer14">Cognitive-behavioral therapy, mindfulness.</div>
+    <div class="paq-question" onclick="toggleAnswer(15)">Psychomotor agitation</div>
+    <div class="paq-answer" id="answer15">Exercise, relaxation techniques.</div>
+
+
+    </div>
+
+    <script>
+        function toggleAnswer(questionNumber) {
+            var answerId = 'answer' + questionNumber;
+            var answerElement = document.getElementById(answerId);
+            var questionElement = document.querySelector('.paq-question:nth-child(' + (questionNumber * 2 - 1) + ')');
+
+            if (answerElement.style.display === 'none') {
+                answerElement.style.display = 'block';
+                questionElement.style.backgroundColor = '#3b5998'; // Change color when answer is displayed
+            } else {
+                answerElement.style.display = 'none';
+                questionElement.style.backgroundColor = '#4285f4'; // Reset color when answer is hidden
+            }
+        }
+    </script>
+    
+</body>
+</html>

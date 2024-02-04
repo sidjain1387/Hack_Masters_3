@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Indicators</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      h1 {
+        margin-bottom: 20px;
+        color: #333;
+        margin-top: 50px;
+      }
+
+      .indicator-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        justify-content: center;
+      }
+
+      .indicator {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        width: 200px;
+      }
+
+      .name {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .value {
+        display: inline-block;
+        font-size: 24px;
+        color: #555;
+        margin: 0 10px;
+      }
+
+      .controls {
+        margin-top: 20px;
+      }
+
+      .controls button {
+        font-size: 18px;
+        padding: 8px 16px;
+        margin: 0 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #4caf50;
+        color: white;
+        transition: background-color 0.3s;
+      }
+
+      .controls button:hover {
+        background-color: #45a049;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="header">{% include 'header.html' %}</div>
+
+    <h1>Blood Report Indicators</h1>
+
+    <div class="indicator-container">
+      <div class="indicator" id="cholesterol">
+        <span class="name">Cholesterol</span>
+        <div class="controls">
+          <button onclick="decrement('cholesterolValue1')">-</button>
+          <span class="value" id="cholesterolValue1">200</span>
+          <button onclick="increment('cholesterolValue1')">+</button>
+          <button onclick="submitCholesterol()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="sugar">
+        <span class="name">Sugar Level</span>
+        <div class="controls">
+          <button onclick="decrement('sugarValue1')">-</button>
+          <span class="value" id="sugarValue1">100</span>
+          <button onclick="increment('sugarValue1')">+</button>
+          <button onclick="submitSugar()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="bp">
+        <span class="name">Red Blood Cell count</span>
+        <div class="controls">
+          <button onclick="decrementByDecimal('bpValue1')">-</button>
+          <span class="value" id="bpValue1">5</span>
+          <button onclick="incrementByDecimal('bpValue1')">+</button>
+          <button onclick="submitBP()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="cholesterol2">
+        <span class="name">Hemoglobin level</span>
+        <div class="controls">
+          <button onclick="decrementByDecimal('cholesterolValue2')">-</button>
+          <span class="value" id="cholesterolValue2">15</span>
+          <button onclick="incrementByDecimal('cholesterolValue2')">+</button>
+          <button onclick="submitHemoglobin()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="sugar2">
+        <span class="name">Platelet count</span>
+        <div class="controls">
+          <button onclick="decrement('sugarValue2')">-</button>
+          <span class="value" id="sugarValue2">300</span>
+          <button onclick="increment('sugarValue2')">+</button>
+          <button onclick="submitPlatelet()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="bp2">
+        <span class="name">White Blood Cell count</span>
+        <div class="controls">
+          <button onclick="decrementByDecimal('bpValue2')">-</button>
+          <span class="value" id="bpValue2">6</span>
+          <button onclick="incrementByDecimal('bpValue2')">+</button>
+          <button onclick="submitWhiteBloodCell()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="cholesterol3">
+        <span class="name">Calcium</span>
+        <div class="controls">
+          <button onclick="decrementByDecimal('cholesterolValue3')">-</button>
+          <span class="value" id="cholesterolValue3">9</span>
+          <button onclick="incrementByDecimal('cholesterolValue3')">+</button>
+          <button onclick="submitCalcium()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="sugar3">
+        <span class="name">Sodium</span>
+        <div class="controls">
+          <button onclick="decrement('sugarValue3')">-</button>
+          <span class="value" id="sugarValue3">140</span>
+          <button onclick="increment('sugarValue3')">+</button>
+          <button onclick="submitSodium()">Submit</button>
+        </div>
+      </div>
+
+      <div class="indicator" id="bp3">
+        <span class="name">Potassium</span>
+        <div class="controls">
+          <button onclick="decrementByDecimal('bpValue3')">-</button>
+          <span class="value" id="bpValue3">4</span>
+          <button onclick="incrementByDecimal('bpValue3')">+</button>
+          <button onclick="submitPotassium()">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div id="footer">{% include 'footer.html' %}</div>
+
+    <script>
+      function increment(id) {
+        var valueElement = document.getElementById(id);
+        var value = parseInt(valueElement.textContent);
+        valueElement.textContent = value + 1;
+      }
+
+      function decrement(id) {
+        var valueElement = document.getElementById(id);
+        var value = parseInt(valueElement.textContent);
+        if (value > 0) {
+          valueElement.textContent = value - 1;
+        }
+      }
+
+      function incrementByDecimal(id) {
+        var valueElement = document.getElementById(id);
+        var value = parseFloat(valueElement.textContent);
+        valueElement.textContent = (value + 0.1).toFixed(1);
+      }
+
+      function decrementByDecimal(id) {
+        var valueElement = document.getElementById(id);
+        var value = parseFloat(valueElement.textContent);
+        if (value > 0) {
+          valueElement.textContent = (value - 0.1).toFixed(1);
+        }
+      }
+
+      function submitCholesterol() {
+        var cholesterolValue = parseInt(
+          document.getElementById("cholesterolValue1").textContent
+        );
+        if (cholesterolValue >= 200 && cholesterolValue < 250) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (cholesterolValue >= 250) {
+          window.location.href = "redirectPageAboveRange.html";
+        } else {
+          alert("Cholesterol level is below 200. You are in good condition.");
+        }
+      }
+
+      function submitSugar() {
+        var sugarValue = parseInt(
+          document.getElementById("sugarValue1").textContent
+        );
+        if (sugarValue >= 100 && sugarValue < 125) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (sugarValue >= 125) {
+          window.location.href = "redirectPageAboveRange.html";
+        } else {
+          alert("Sugar level is below 100. You are in good condition.");
+        }
+      }
+
+      function submitBP() {
+        var bpValue = parseFloat(
+          document.getElementById("bpValue1").textContent
+        );
+        if (bpValue >= 6) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (bpValue < 4.5) {
+          window.location.href = "redirectPageAboveRange.html";
+        } else if (bpValue >= 4.5 && bpValue < 6) {
+          alert("RBC is within normal range. You are in good condition.");
+        }
+      }
+
+      function submitHemoglobin() {
+        var hemoglobinValue = parseFloat(
+          document.getElementById("cholesterolValue2").textContent
+        );
+        if (hemoglobinValue < 13.5) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (hemoglobinValue > 17.5) {
+          window.location.href = "redirectPageAboveRange.html";
+        } else if (hemoglobinValue >= 13.5 && hemoglobinValue <= 17.5) {
+          alert(
+            "Hemoglobin level is within normal range. You are in good condition."
+          );
+        }
+      }
+
+      function submitPlatelet() {
+        var plateletValue = parseFloat(
+          document.getElementById("sugarValue2").textContent
+        );
+        if (plateletValue < 150) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (plateletValue > 450) {
+          window.location.href = "redirectPageAboveRange.html";
+        } else if (plateletValue >= 150 && plateletValue <= 450) {
+          alert(
+            "Platelet count is within normal range. You are in good condition."
+          );
+        }
+      }
+
+      function submitWhiteBloodCell() {
+        var whiteBloodCellValue = parseFloat(
+          document.getElementById("bpValue2").textContent
+        );
+        if (whiteBloodCellValue < 4.5) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (whiteBloodCellValue > 11) {
+          window.location.href = "redirectPageBelowRange.html";
+        } else if (whiteBloodCellValue >= 4.5 && whiteBloodCellValue <= 11) {
+          alert(
+            "White Blood Cell count is within normal range. You are in good condition."
+          );
+        }
+      }
+
+      function submitCalcium() {
+        var calciumValue = parseFloat(
+          document.getElementById("cholesterolValue3").textContent
+        );
+        if (calciumValue < 8.5) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (calciumValue > 10.5) {
+          window.location.href = "redirectPageAboveRange.html";
+        } else if (calciumValue >= 8.5 && calciumValue <= 10.5) {
+          alert(
+            "Calcium level is within normal range. You are in good condition."
+          );
+        }
+      }
+
+      function submitSodium() {
+        var sodiumValue = parseFloat(
+          document.getElementById("sugarValue3").textContent
+        );
+        if (sodiumValue < 135) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (sodiumValue > 145) {
+          window.location.href = "redirectPageBelowRange.html";
+        } else if (sodiumValue >= 135 && sodiumValue <= 145) {
+          alert(
+            "Sodium level is within normal range. You are in good condition."
+          );
+        }
+      }
+
+      function submitPotassium() {
+        var potassiumValue = parseFloat(
+          document.getElementById("bpValue3").textContent
+        );
+        if (potassiumValue < 3.5) {
+          window.location.href = "redirectPageWithinRange.html";
+        } else if (potassiumValue > 5.1) {
+          window.location.href = "redirectPageBelowRange.html";
+        } else if (potassiumValue >= 3.5 && potassiumValue <= 5.1) {
+          alert(
+            "Potassium level is within normal range. You are in good condition."
+          );
+        }
+      }
+    </script>
+    
+  </body>
+</html>

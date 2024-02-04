@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Blog entry layouts</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <style>
+    body {
+      background: #e5ded8;
+      box-sizing: border-box;
+    }
+
+    .blog-container,
+    .blog-container * {
+      box-sizing: border-box;
+    }
+
+    .blog-container {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0 4px 2px -2px;
+      font-family: "adelle-sans", sans-serif;
+      font-weight: 100;
+      margin: 48px auto;
+      width: 20rem;
+      transition: transform 0.5s ease; /* Add transition for smooth animation */
+    }
+
+    @media screen and (min-width: 480px) {
+      .blog-container {
+        width: 28rem;
+      }
+    }
+
+    @media screen and (min-width: 767px) {
+      .blog-container {
+        width: 40rem;
+      }
+    }
+
+    @media screen and (min-width: 959px) {
+      .blog-container {
+        width: 50rem;
+      }
+    }
+
+    .blog-container a {
+      color: #4d4dff;
+      text-decoration: none;
+      transition: .25s ease;
+    }
+
+    .blog-container a:hover {
+      border-color: #ff4d4d;
+      color: #ff4d4d;
+    }
+
+    .blog-cover {
+      background: url("{{ url_for('static', filename='images/dental.jpg') }}");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 10px 10px 0 0;
+      height: 15rem;
+      box-shadow: inset rgba(0, 0, 0, 0.2) 0 64px 64px 16px;
+    }
+
+    .blog-author,
+    .blog-author--no-cover {
+      margin: 0 auto;
+      padding-top: .125rem;
+      width: 80%;
+    }
+
+    .blog-author h3::before,
+    .blog-author--no-cover h3::before {
+      background-size: cover;
+      border-radius: 50%;
+      content: " ";
+      display: inline-block;
+      height: 32px;
+      margin-right: .5rem;
+      position: relative;
+      top: 8px;
+      width: 32px;
+    }
+
+    .blog-author h3 {
+      color: #fff;
+      font-weight: 100;
+    }
+
+    .blog-author--no-cover h3 {
+      color: #999999;
+      font-weight: 100;
+    }
+
+    .blog-body {
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .video-body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .blog-title h1 a {
+      color: #333;
+      font-weight: 100;
+    }
+
+    .blog-summary p {
+      color: #4d4d4d;
+    }
+
+    .blog-tags ul {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .blog-tags li + li {
+      margin-left: .5rem;
+    }
+
+    .blog-tags a {
+      border: 1px solid #999999;
+      border-radius: 3px;
+      color: #999999;
+      font-size: .75rem;
+      height: 1.5rem;
+      line-height: 1.5rem;
+      letter-spacing: 1px;
+      padding: 0 .5rem;
+      text-align: center;
+      text-transform: uppercase;
+      white-space: nowrap;
+      width: 5rem;
+    }
+
+    .blog-footer {
+      border-top: 1px solid #e6e6e6;
+      margin: 0 auto;
+      padding-bottom: .125rem;
+      width: 80%;
+    }
+
+    .blog-footer ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      padding-left: 0;
+    }
+
+    .blog-footer li:first-child {
+      margin-right: auto;
+    }
+
+    .blog-footer li + li {
+      margin-left: .5rem;
+    }
+
+    .blog-footer li {
+      color: #999999;
+      font-size: .75rem;
+      height: 1.5rem;
+      letter-spacing: 1px;
+      line-height: 1.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .blog-footer li a {
+      color: #999999;
+    }
+
+    .comments {
+      margin-right: 1rem;
+    }
+
+    .published-date {
+      border: 1px solid #999999;
+      border-radius: 3px;
+      padding: 0 .5rem;
+    }
+
+    .numero {
+      position: relative;
+      top: -0.5rem;
+    }
+
+    .icon-star,
+    .icon-bubble {
+      fill: #999999;
+      height: 24px;
+      margin-right: .5rem;
+      transition: .25s ease;
+      width: 24px;
+    }
+
+    .icon-star:hover,
+    .icon-bubble:hover {
+      fill: #ff4d4d;
+    }
+
+    /* Add the zoom effect on hover */
+    .blog-container:hover {
+      transform: scale(1.05); /* Zoom in by 5% when hovered */
+    }
+
+    /* Add the left to center transition */
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100%); /* Start from left */
+      }
+      to {
+        transform: translateX(0); /* Move to center */
+      }
+    }
+
+    .blog-title {
+      text-align: center; /* Center align the title */
+    }
+  </style>
+</head>
+<body>
+    <div id="header">{% include 'header.html' %}</div>
+
+  <!-- Blog container 1 -->
+  <div class="blog-container">
+    <!-- Blog header -->
+    <div class="blog-header">
+      <!-- Blog cover -->
+      <div class="blog-cover">
+        <!-- Blog author -->
+        <div class="blog-author"></div>
+      </div>
+    </div>
+
+    <!-- Intro block -->
+    <div class="blog-body">
+      <!-- Blog title -->
+      <div class="blog-title">
+        <h1><a href="#"><b>DENTAL CARE FOR CHILDREN</b></a></h1>
+      </div>
+      <!-- Blog summary -->
+      <div class="blog-summary">
+        <p>Stay calm, we'll take care of everything. You're stronger than you think, and you'll overcome this!!!</p>
+      </div>
+      <!-- Blog tags -->
+      <div class="blog-tags">
+        <ul><!-- Removed CSS, web design, and codepen buttons --></ul>
+      </div>
+    </div>
+
+    <!-- Blog footer -->
+    <div class="blog-footer">
+      <ul><!-- Removed "2 days ago" and comment and favorite buttons --></ul>
+    </div>
+  </div>
+
+  <!-- Blog container 2 -->
+  <div class="blog-container">
+    <!-- Blog header -->
+    <div class="blog-header">
+      <!-- Blog author (no cover) -->
+      <div class="blog-author--no-cover"></div>
+    </div>
+
+    <!-- First aid block -->
+    <div class="blog-body">
+      <!-- Blog title -->
+      <div class="blog-title">
+        <h1><a href="#"><b>ORAL HYGIENE MEASURES</b></a></h1>
+      </div>
+      <div class="blog-summary">
+        <p>1. Brush twice daily, morning and night, with fluoride toothpaste.</p>
+         <p>2. Floss once a day to remove plaque between teeth.</p>
+         <p>3. Use an antimicrobial mouthwash to reduce bacteria and freshen breath.</p>
+         <p>4. Change toothbrush every 3-4 months or sooner if bristles fray.</p>
+         <p>5. Avoid tobacco; it stains teeth and causes gum disease.</p>
+         <p>6. Limit sugary snacks; opt for nutritious, tooth-friendly foods.</p>
+         <p>7. Stay hydrated; water helps wash away bacteria and food particles.</p>
+         <p>8. Chew sugar-free gum to stimulate saliva and prevent dry mouth.</p>
+         <p>9. Visit the dentist for regular check-ups and cleanings twice annually.</p>
+         <p>10. Replace toothbrush after illness to prevent bacterial reinfection.</p>
+       <p> 11.  Clean your tongue with a tongue scraper to remove bacteria.</p>
+        <p> 12. Choose a soft-bristled toothbrush to avoid enamel damage.</p>
+         <p>13. Don't use teeth as tools; avoid opening packages or biting objects.</p>
+         <p>14. Consider fluoride treatments to strengthen teeth and prevent decay.</p>
+         <p>15. Wear a mouthguard for sports to protect teeth from injury.</p>
+         <p>16. Address teeth grinding; use a night guard to prevent damage.</p>
+         <p>17. Maintain a balanced diet for overall oral and systemic health.</p>
+         <p>18. Avoid excessive alcohol; it can contribute to gum disease development.</p>
+      </div>
+      <!-- Blog summary -->
+      <div class="blog-summary">
+        <!-- First aid content -->
+      </div>
+      <!-- Blog tags -->
+      <div class="blog-tags">
+      </div>
+    </div>
+
+    <!-- Blog footer -->
+    <div class="blog-footer">
+    </div>
+  </div>
+
+  <!-- Blog container 3 -->
+  <div class="blog-container">
+    <!-- Blog header -->
+    <div class="blog-header">
+      <!-- Blog author (no cover) -->
+      <div class="blog-author--no-cover"></div>
+    </div>
+
+    <!-- Video block -->
+    <div class="blog-body">
+      <!-- Blog title -->
+      <div class="blog-title">
+        <h1><a href="#"><b>A Video Based for Better Understanding</b></a></h1>
+      </div>
+      <!-- Blog summary -->
+      <div class="blog-summary">
+        <p>Credits - Hertfordshire County Council on YouTube</p>
+      </div>
+      <!-- Video element -->
+      <iframe class="video-body" width="560" height="615" src="https://www.youtube.com/embed/IUUKyOtSZ8U?si=quXRal7HIHN4DeiM" frameborder="0" allowfullscreen></iframe>
+      <!-- Blog tags -->
+      <div class="blog-tags">
+        <ul><!-- Removed video, embed, and what buttons --></ul>
+      </div>
+    </div>
+
+    <!-- Blog footer -->
+    <div class="blog-footer">
+    </div>
+  </div>
+</body>
+</html>

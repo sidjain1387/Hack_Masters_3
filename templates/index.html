@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healthcare Navigation</title>
+    <style>
+         body {
+            background: url_for('static', filename='images/home.jpg') center/cover no-repeat; /* Replace 'your-background-image.jpg' with the actual path to your image */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        .our_features {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        @import url(https://fonts.googleapis.com/css?family=Khula:700);
+        .mri_scan,
+        .blood_report {
+            background: linear-gradient(40deg, rgb(215, 192, 192) 50%, rgb(32, 92, 92) 100%, #fff 100%);            width: 50%;
+            text-align: center;
+            border-radius: 10px;
+            margin: 20px;
+            cursor: pointer;
+        }
+        .hidden {
+            opacity: 0;
+        }
+        .console-container {
+            width: 100%;
+            position: relative;
+            font-family: Khula;
+            font-size: 2em;
+            text-align: center;
+            height: 20px;
+            margin: 10px;
+        }
+        .console-underscore {
+            display: inline-block;
+            position: relative;
+            top: -0.15em;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        {% include 'header.html' %}
+    </div>
+
+    <main>
+        <!-- Your website content goes here -->
+        <div class="main">
+            <div class='console-container'>
+                <span id='text'></span>
+                <div class='console-underscore' id='console'>
+                    &#95;
+                </div>
+            </div>
+        </div>
+        <!-- <div class="our_features">
+            <p>OUR FEATURES</p>
+        </div> -->
+        <div class="container">
+            <div class="mri_scan" onclick="navigate('mri_scan.html')">
+                <p>MRI SCAN</p>
+            </div>
+            <div class="blood_report" onclick="navigate('blood_report.html')">
+                <p>BLOOD TEST REPORT</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- <div class="chat-icon" onclick="toggleChat()">&#x1F5E3;</div> -->
+    <div id="1-section">
+        {% include '1-section.html' %}
+    </div>
+    <div id="2-section">
+        {% include '2-section.html' %}
+    </div>
+    <div id="blogs">
+        {% include 'blog1.html' %}
+    </div>
+
+    <!-- Botpress Webchat Script -->
+    <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+    <script src="https://mediafiles.botpress.cloud/c340d7a7-7de7-46cc-8a5c-a5c1818491e1/webchat/config.js" defer></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        consoleText(['HEALTH HUB 360'], 'text', ['lightblue']);
+
+        function consoleText(words, id, colors) {
+            if (colors === undefined) colors = ['#fff'];
+        var visible = true;
+        var con = document.getElementById('console');
+        var letterCount = 1;
+        var x = 1;
+        var waiting = false;
+        var target = document.getElementById(id)
+        target.setAttribute('style', 'color:' + colors[0])
+        window.setInterval(function() {
+        
+            if (letterCount === 0 && waiting === false) {
+            waiting = true;
+            target.innerHTML = words[0].substring(0, letterCount)
+            window.setTimeout(function() {
+                var usedColor = colors.shift();
+                colors.push(usedColor);
+                var usedWord = words.shift();
+                words.push(usedWord);
+                x = 1;
+                target.setAttribute('style', 'color:' + colors[0])
+                letterCount += x;
+                waiting = false;
+            }, 1000)
+            } else if (letterCount === words[0].length + 1 && waiting === false) {
+            waiting = true;
+            window.setTimeout(function() {
+                x = -1;
+                letterCount += x;
+                waiting = false;
+            }, 1000)
+            } else if (waiting === false) {
+            target.innerHTML = words[0].substring(0, letterCount)
+            letterCount += x;
+            }
+        }, 120)
+        window.setInterval(function() {
+            if (visible === true) {
+            con.className = 'console-underscore hidden'
+            visible = false;
+        
+            } else {
+            con.className = 'console-underscore'
+        
+            visible = true;
+            }
+        }, 400)
+        }</script>
+
+    
+</body>
+</html>
